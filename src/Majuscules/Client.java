@@ -4,7 +4,7 @@ import java.io.*;
 import java.net.*;
 
 
-public class TCPClient {
+public class Client {
     public static void main(String[] args) throws IOException {
         
         BufferedReader EntradaTeclat = new BufferedReader(new InputStreamReader(System.in));
