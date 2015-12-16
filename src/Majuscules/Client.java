@@ -7,7 +7,7 @@ import java.net.*;
 public class Client {
     public static void main(String[] args) throws IOException {
     	
-    	int PORT = 7000;
+    	final int PORT = 7000;
         
         BufferedReader EntradaTeclat = new BufferedReader(new InputStreamReader(System.in));
         
@@ -23,7 +23,7 @@ public class Client {
         SortidaAlServidor = new DataOutputStream(clientSocket.getOutputStream());
         EntradaDesdeServidor = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         
-        
+        System.out.println("Escriu la grase que vols enviar al servidor: ");
         frase = EntradaTeclat.readLine();
         
         SortidaAlServidor.writeBytes(frase + "\n");

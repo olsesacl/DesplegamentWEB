@@ -1,15 +1,11 @@
 package Majuscules;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.io.*;
+import java.net.*;
 
 public class Servidor {
 	public static void main(String[] args) throws IOException {
-		int PORT = 7000;
+		final int PORT = 7000;
 		
 		String FraseClient;
 		String FraseMajuscules;
@@ -18,20 +14,30 @@ public class Servidor {
 		DataOutputStream SortidaClient = null;
         BufferedReader EntradaDesdeClient = null;
         
-		while(true){
-			Socket SocketConnexio = SocketAcollida.accept();
-			System.out.println("Conexió acceptada" + SocketConnexio.toString());
+        Boolean continuar = true;
+        
+		while(continuar){
+			System.out.println("Esperant conexio...");
+			Socket SocketConnexio = SocketAcollida.accept();// Servidor esperant conexio
 			
 			SortidaClient = new DataOutputStream(SocketConnexio.getOutputStream());
 			EntradaDesdeClient = new BufferedReader(new InputStreamReader(SocketConnexio.getInputStream()));
 			
+			System.out.println("Conexio acceptada" + SocketConnexio.toString());
+			SortidaClient.writeBytes("Conexio establerta\n");
+			
 			FraseClient = EntradaDesdeClient.readLine();
+			System.out.println("Dades recibides: " + FraseClient);
 			
 			FraseMajuscules = FraseClient.toUpperCase();
 			
-			SortidaClient.writeBytes(FraseMajuscules);
+			SortidaClient.writeBytes(FraseMajuscules + "\n");
+			
+			System.out.println("Enviades dades al client: " + FraseMajuscules);
+			
 			
 		}
+		SocketAcollida.close();//tanquem la conexio del servidor
 	}
 
 }
