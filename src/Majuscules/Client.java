@@ -45,7 +45,7 @@ public class Client {
         
         } catch (IOException ex) {
             //Logger.getLogger(TCPClient.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("No es pot establir connexiÃ³");
+            System.out.println("No es pot establir connexió");
         }
         
         
