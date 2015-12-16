@@ -6,6 +6,8 @@ import java.net.*;
 
 public class Client {
     public static void main(String[] args) throws IOException {
+    	
+    	int PORT = 7000;
         
         BufferedReader EntradaTeclat = new BufferedReader(new InputStreamReader(System.in));
         
@@ -16,7 +18,7 @@ public class Client {
         String fraseModificada;
         
         Socket clientSocket;
-        clientSocket = new Socket("127.0.0.1", 6789);
+        clientSocket = new Socket("127.0.0.1", PORT);
         
         SortidaAlServidor = new DataOutputStream(clientSocket.getOutputStream());
         EntradaDesdeServidor = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));

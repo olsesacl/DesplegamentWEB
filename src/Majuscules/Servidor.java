@@ -18,8 +18,6 @@ public class Servidor {
 		DataOutputStream SortidaClient = null;
         BufferedReader EntradaDesdeClient = null;
         
-        
-		
 		while(true){
 			Socket SocketConnexio = SocketAcollida.accept();
 			System.out.println("Conexió acceptada" + SocketConnexio.toString());
@@ -27,7 +25,11 @@ public class Servidor {
 			SortidaClient = new DataOutputStream(SocketConnexio.getOutputStream());
 			EntradaDesdeClient = new BufferedReader(new InputStreamReader(SocketConnexio.getInputStream()));
 			
-		
+			FraseClient = EntradaDesdeClient.readLine();
+			
+			FraseMajuscules = FraseClient.toUpperCase();
+			
+			SortidaClient.writeBytes(FraseMajuscules);
 			
 		}
 	}
